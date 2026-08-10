@@ -60,7 +60,6 @@ export const siteConfig = {
     { label: "Precios", href: "#precios" },
     { label: "Nosotros", href: "#nosotros" },
     { label: "Contacto", href: "#contacto" },
-    { label: "Cómo llegar", href: "#ubicacion" },
   ],
 } as const;
 

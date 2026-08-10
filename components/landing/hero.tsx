@@ -1,10 +1,20 @@
-import Link from "next/link";
-import { ArrowRight, ChevronRight } from "lucide-react";
+"use client";
 
+import { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "motion/react";
+import { ArrowRight } from "lucide-react";
+
+import { Logo } from "@/components/brand/logo";
 import { Button } from "@/components/ui/button";
 import { siteConfig } from "@/lib/site";
-import { Reveal } from "./motion-primitives";
-import { WaveDivider } from "./wave-divider";
+
+const SLIDE_MS = 8500;
+
+const slides = [
+  "Tu empresa en manos expertas",
+  "De la constitución al cumplimiento",
+  "Contable, tributario y legal en un solo lugar",
+];
 
 const stats = [
   { value: "4", label: "Líneas de servicio" },
@@ -13,103 +23,101 @@ const stats = [
 ];
 
 export function Hero() {
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const id = window.setInterval(() => {
+      setIndex((current) => (current + 1) % slides.length);
+    }, SLIDE_MS);
+    return () => window.clearInterval(id);
+  }, []);
+
   return (
-    <section className="relative overflow-hidden bg-brand-navy-deep text-white">
-      {/* Brand backdrop: navy gradient + faint building grid */}
+    <section className="relative flex min-h-[calc(100svh-4.25rem)] flex-col justify-center overflow-hidden bg-brand-navy-deep text-white">
       <div
         aria-hidden
-        className="absolute inset-0 bg-[radial-gradient(125%_125%_at_85%_0%,oklch(0.45_0.16_264/0.55)_0%,transparent_55%)]"
+        className="absolute inset-0 bg-[radial-gradient(70%_60%_at_50%_0%,oklch(0.42_0.14_264/0.55)_0%,transparent_70%)]"
       />
       <div
         aria-hidden
-        className="absolute inset-0 opacity-[0.07] [background-image:linear-gradient(white_1px,transparent_1px),linear-gradient(90deg,white_1px,transparent_1px)] [background-size:46px_46px]"
+        className="absolute -right-24 top-1/4 size-[28rem] rotate-12 rounded-[2rem] border border-white/10 bg-white/[0.03]"
+      />
+      <div
+        aria-hidden
+        className="absolute -left-16 bottom-10 size-[20rem] -rotate-6 rounded-[2rem] border border-white/10 bg-brand-blue/20"
       />
 
-      <div className="relative mx-auto grid w-full max-w-6xl gap-12 px-4 pb-24 pt-20 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:pb-28 lg:pt-24">
-        <Reveal>
-          <span className="inline-flex items-center rounded-full bg-brand-blue-bright/20 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-white ring-1 ring-inset ring-white/20">
-            {siteConfig.tagline}
-          </span>
+      <div className="relative mx-auto flex w-full max-w-5xl flex-col items-center px-4 py-20 text-center sm:px-6 sm:py-24">
+        {/* Static brand block */}
+        <Logo variant="light" className="scale-110" />
+        <p className="mt-5 text-sm font-medium text-white/60">
+          {siteConfig.tagline}
+        </p>
+        <p className="mt-4 max-w-2xl text-pretty text-base leading-relaxed text-white/75 sm:text-lg">
+          {siteConfig.description}
+        </p>
 
-          <h1 className="mt-6 text-balance text-4xl font-extrabold leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl">
-            Soluciones contables, tributarias y legales para tu empresa
-          </h1>
-
-          <p className="mt-6 max-w-xl text-pretty text-base leading-relaxed text-white/75 sm:text-lg">
-            {siteConfig.description}
-          </p>
-
-          <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-            <Button
-              asChild
-              size="lg"
-              className="bg-white text-brand-navy hover:bg-white/90"
+        {/* Rotating headline */}
+        <div className="relative mt-10 min-h-[5.5rem] w-full sm:min-h-[7rem]">
+          <AnimatePresence mode="wait">
+            <motion.h1
+              key={slides[index]}
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -18 }}
+              transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+              className="absolute inset-x-0 text-balance text-3xl font-extrabold leading-[1.1] tracking-tight sm:text-5xl md:text-6xl"
             >
-              <a href="#contacto">
-                Solicitar asesoría
-                <ArrowRight className="size-4" />
-              </a>
-            </Button>
-            <Button
-              asChild
-              size="lg"
-              variant="outline"
-              className="border-white/30 bg-transparent text-white hover:bg-white/10 hover:text-white"
-            >
-              <a href="#paquetes">
-                Ver detalles de nuestros planes
-                <ChevronRight className="size-4" />
-              </a>
-            </Button>
-          </div>
+              {slides[index]}
+            </motion.h1>
+          </AnimatePresence>
+        </div>
 
-          <dl className="mt-12 grid max-w-md grid-cols-3 gap-6">
-            {stats.map((s) => (
-              <div key={s.label}>
-                <dt className="sr-only">{s.label}</dt>
-                <dd className="text-3xl font-extrabold text-white">{s.value}</dd>
-                <p className="mt-1 text-xs font-medium text-white/60">
-                  {s.label}
-                </p>
-              </div>
-            ))}
-          </dl>
-        </Reveal>
-
-        {/* Brand card — echoes the flyer "Ref." pill composition */}
-        <Reveal delay={0.15} className="relative hidden lg:block">
-          <div className="absolute -right-6 -top-6 size-40 rounded-full bg-brand-blue-bright/30 blur-2xl" />
-          <div className="relative rounded-3xl border border-white/15 bg-white/[0.06] p-8 backdrop-blur">
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-white/60">
-              Paquetes de registro
-            </p>
-            <p className="mt-3 text-2xl font-bold leading-snug">
-              Constituye tu compañía con acompañamiento de principio a fin.
-            </p>
-            <ul className="mt-6 space-y-3 text-sm text-white/80">
-              {[
-                "Documento constitutivo e inventario de apertura",
-                "Gestiones ante el SAREN",
-                "RIF, publicación mercantil e inscripciones",
-              ].map((line) => (
-                <li key={line} className="flex items-start gap-3">
-                  <span className="mt-1 size-1.5 shrink-0 rounded-full bg-brand-sky" />
-                  {line}
-                </li>
-              ))}
-            </ul>
-            <Link
-              href="#paquetes"
-              className="mt-7 inline-flex items-center gap-1.5 rounded-full bg-white px-5 py-2 text-sm font-bold text-brand-navy transition hover:bg-white/90"
-            >
-              Ver paquetes
+        <div className="mt-8 flex flex-col items-center gap-5">
+          <Button
+            asChild
+            size="lg"
+            className="h-12 rounded-full bg-white px-8 text-brand-navy hover:bg-white/90"
+          >
+            <a href="#contacto">
+              Contáctenos
               <ArrowRight className="size-4" />
-            </Link>
-          </div>
-        </Reveal>
-      </div>
+            </a>
+          </Button>
 
-      <WaveDivider />
+          <div className="flex items-center gap-2">
+            {slides.map((title, i) => (
+              <button
+                key={title}
+                type="button"
+                aria-label={`Diapositiva ${i + 1}`}
+                aria-current={i === index}
+                onClick={() => setIndex(i)}
+                className={
+                  i === index
+                    ? "h-2 w-8 rounded-full bg-white transition-all"
+                    : "size-2 rounded-full bg-white/35 transition-all hover:bg-white/60"
+                }
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* Static achievements */}
+        <dl className="mt-14 grid w-full max-w-xl grid-cols-3 gap-6 border-t border-white/15 pt-10">
+          {stats.map((stat) => (
+            <div key={stat.label}>
+              <dt className="sr-only">{stat.label}</dt>
+              <dd className="font-mono text-2xl font-bold tabular-nums sm:text-3xl">
+                {stat.value}
+              </dd>
+              <p className="mt-1 text-xs font-medium text-white/55 sm:text-sm">
+                {stat.label}
+              </p>
+            </div>
+          ))}
+        </dl>
+      </div>
     </section>
   );
 }

@@ -17,9 +17,9 @@ export function TramitesTabs() {
   const current = groups[active];
 
   return (
-    <div className="grid overflow-hidden rounded-2xl border border-border/70 bg-card shadow-2xl md:grid-cols-[minmax(220px,0.8fr)_1.4fr]">
+    <div className="grid overflow-hidden rounded-3xl border border-border/70 bg-card shadow-lg md:grid-cols-[minmax(220px,0.8fr)_1.4fr]">
       {/* Left — list of titles */}
-      <div className="flex gap-2 overflow-x-auto border-b border-border bg-brand-navy-deep p-3 md:flex-col md:gap-1 md:overflow-visible md:border-b-0 md:border-r">
+      <div className="flex gap-2 overflow-x-auto border-b border-border bg-brand-navy-deep p-3 md:flex-col md:gap-1.5 md:overflow-visible md:border-b-0 md:border-r">
         {groups.map((g, i) => {
           const activeTab = i === active;
           return (
@@ -28,7 +28,7 @@ export function TramitesTabs() {
               type="button"
               onClick={() => setActive(i)}
               className={cn(
-                "group flex shrink-0 items-center justify-between gap-2 rounded-lg px-4 py-2.5 text-left text-sm font-medium transition-colors md:w-full",
+                "group flex shrink-0 items-center justify-between gap-2 rounded-xl px-4 py-2.5 text-left text-sm font-medium transition-colors md:w-full",
                 activeTab
                   ? "bg-white text-brand-navy shadow-md"
                   : "text-white/75 hover:bg-white/10 hover:text-white",
@@ -74,7 +74,7 @@ export function TramitesTabs() {
                 >
                   <span className="text-sm text-foreground/85">{item.label}</span>
                   {item.price != null && (
-                    <span className="shrink-0 rounded-md bg-brand-tint px-2.5 py-0.5 font-mono text-sm font-bold tabular-nums text-brand-navy">
+                    <span className="shrink-0 rounded-full bg-brand-tint px-3 py-1 font-mono text-sm font-bold tabular-nums text-brand-navy">
                       {formatUsd(item.price)}
                     </span>
                   )}

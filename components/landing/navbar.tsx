@@ -19,34 +19,37 @@ export function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-white/10 bg-brand-navy-deep/95 backdrop-blur supports-[backdrop-filter]:bg-brand-navy-deep/80">
-      <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-4 sm:px-6">
+    <header className="sticky top-0 z-50 border-b border-border/80 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/90">
+      <div className="mx-auto flex h-[4.25rem] w-full max-w-6xl items-center justify-between px-4 sm:px-6">
         <Link href="/" aria-label="LegalGor — inicio">
-          <Logo variant="light" />
+          <Logo variant="dark" />
         </Link>
 
-        <nav className="hidden items-center gap-8 md:flex">
+        <nav className="hidden items-center gap-8 lg:flex">
           {siteConfig.nav.map((item) => (
             <a
               key={item.href}
               href={item.href}
-              className="text-sm font-medium text-white/80 transition-colors hover:text-white"
+              className="text-sm font-medium text-brand-navy/70 transition-colors hover:text-brand-navy"
             >
               {item.label}
             </a>
           ))}
         </nav>
 
-        <div className="hidden items-center gap-3 md:flex">
+        <div className="hidden items-center gap-3 lg:flex">
           <Button
             asChild
             variant="ghost"
-            className="text-white hover:bg-white/10 hover:text-white"
+            className="text-brand-navy hover:bg-brand-tint hover:text-brand-navy"
           >
             <Link href="/dashboard">Panel</Link>
           </Button>
-          <Button asChild className="bg-white text-brand-navy hover:bg-white/90">
-            <a href="#contacto">Solicitar asesoría</a>
+          <Button
+            asChild
+            className="rounded-full bg-brand-navy text-white hover:bg-brand-navy/90"
+          >
+            <a href="#contacto">Contáctenos</a>
           </Button>
         </div>
 
@@ -55,16 +58,16 @@ export function Navbar() {
             <Button
               variant="ghost"
               size="icon"
-              className="text-white hover:bg-white/10 hover:text-white md:hidden"
+              className="text-brand-navy hover:bg-brand-tint lg:hidden"
               aria-label="Abrir menú"
             >
               <Menu className="size-5" />
             </Button>
           </SheetTrigger>
-          <SheetContent className="border-l-0 bg-brand-navy-deep text-white">
+          <SheetContent className="border-l-0 bg-white text-brand-navy">
             <SheetHeader>
               <SheetTitle className="text-left">
-                <Logo variant="light" />
+                <Logo variant="dark" />
               </SheetTitle>
             </SheetHeader>
             <nav className="mt-2 flex flex-col gap-1 px-4">
@@ -73,27 +76,34 @@ export function Navbar() {
                   key={item.href}
                   href={item.href}
                   onClick={() => setOpen(false)}
-                  className="rounded-lg px-3 py-2.5 text-base font-medium text-white/85 transition-colors hover:bg-white/10 hover:text-white"
+                  className="rounded-lg px-3 py-2.5 text-base font-semibold text-brand-navy/80 transition-colors hover:bg-brand-tint hover:text-brand-navy"
                 >
                   {item.label}
                 </a>
               ))}
+              <a
+                href="#ubicacion"
+                onClick={() => setOpen(false)}
+                className="rounded-lg px-3 py-2.5 text-base font-semibold text-brand-navy/80 transition-colors hover:bg-brand-tint hover:text-brand-navy"
+              >
+                Cómo llegar
+              </a>
             </nav>
             <div className="mt-4 flex flex-col gap-2 px-4">
               <Button
                 asChild
                 variant="ghost"
-                className="justify-start text-white hover:bg-white/10 hover:text-white"
+                className="justify-start text-brand-navy hover:bg-brand-tint"
                 onClick={() => setOpen(false)}
               >
                 <Link href="/dashboard">Panel</Link>
               </Button>
               <Button
                 asChild
-                className="bg-white text-brand-navy hover:bg-white/90"
+                className="rounded-full bg-brand-navy text-white hover:bg-brand-navy/90"
                 onClick={() => setOpen(false)}
               >
-                <a href="#contacto">Solicitar asesoría</a>
+                <a href="#contacto">Contáctenos</a>
               </Button>
             </div>
           </SheetContent>

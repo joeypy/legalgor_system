@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 
-/** Rounded navy pill heading used throughout the LegalGor brand material. */
+/** Compact section eyebrow used across the landing. */
 export function SectionPill({
   children,
   className,
@@ -11,7 +11,7 @@ export function SectionPill({
   return (
     <span
       className={cn(
-        "inline-flex items-center rounded-full bg-brand-navy px-6 py-2.5 text-sm font-bold uppercase tracking-[0.18em] text-white shadow-sm",
+        "inline-flex items-center text-xs font-semibold uppercase tracking-[0.2em] text-brand-blue",
         className,
       )}
     >

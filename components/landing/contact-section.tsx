@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Mail, Navigation, Send } from "lucide-react";
+import { Mail, Send } from "lucide-react";
 
 import { InstagramIcon, WhatsappIcon } from "@/components/brand/icons";
 import { Button } from "@/components/ui/button";
@@ -17,7 +17,6 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 import { serviceLines } from "@/features/servicios/data";
 import {
-  directionsUrl,
   instagramHandle,
   siteConfig,
   whatsappUrl,
@@ -39,7 +38,6 @@ export function ContactSection() {
       label: "WhatsApp",
       value: contact.whatsapp,
       href: whatsappUrl(),
-      accent: true,
     },
     {
       icon: InstagramIcon,
@@ -69,70 +67,50 @@ export function ContactSection() {
   };
 
   return (
-    <section id="contacto" className="bg-brand-tint py-20 sm:py-24">
+    <section id="contacto" className="bg-brand-navy-deep py-24 text-white sm:py-28">
       <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
-        <div className="grid gap-10 lg:grid-cols-2 lg:items-start">
+        <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:items-start lg:gap-16">
           <Reveal>
-            <div className="inline-flex items-center rounded-full bg-brand-navy px-6 py-2.5 text-sm font-bold uppercase tracking-[0.18em] text-white shadow-sm">
+            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-brand-sky">
               Contacto
-            </div>
-            <h2 className="mt-6 text-3xl font-extrabold tracking-tight text-brand-navy sm:text-4xl">
-              Hablemos de tu empresa
+            </p>
+            <h2 className="mt-4 text-3xl font-extrabold tracking-tight sm:text-4xl">
+              Formulario de contacto
             </h2>
-            <p className="mt-4 max-w-md text-muted-foreground">
-              Escríbenos por el canal que prefieras o déjanos tus datos y te
-              contactamos.
+            <p className="mt-4 max-w-md text-white/70">
+              Completa el formulario o escríbenos por el canal que prefieras.
             </p>
 
-            <ul className="mt-8 space-y-3">
+            <ul className="mt-10 space-y-4">
               {canales.map((c) => (
                 <li key={c.label}>
                   <a
                     href={c.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group flex items-center gap-4 rounded-xl border border-border/60 bg-card p-4 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
+                    className="group flex items-center gap-3 rounded-2xl p-2 -ml-2 transition hover:bg-white/5"
                   >
-                    <span
-                      className={
-                        c.accent
-                          ? "grid size-11 place-items-center rounded-lg bg-brand-navy text-white"
-                          : "grid size-11 place-items-center rounded-lg bg-brand-tint text-brand-navy"
-                      }
-                    >
-                      <c.icon className="size-5" />
+                    <span className="grid size-11 place-items-center rounded-full bg-white/10 text-white transition group-hover:bg-white group-hover:text-brand-navy">
+                      <c.icon className="size-4" />
                     </span>
                     <span className="min-w-0">
-                      <span className="block text-xs font-medium uppercase tracking-wide text-muted-foreground">
+                      <span className="block text-xs font-medium uppercase tracking-wide text-white/50">
                         {c.label}
                       </span>
-                      <span className="block truncate font-medium text-foreground">
+                      <span className="block truncate text-sm font-medium text-white/90 group-hover:text-white">
                         {c.value}
                       </span>
                     </span>
                   </a>
-
-                  {c.label === "WhatsApp" && (
-                    <a
-                      href={directionsUrl()}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="ml-1 mt-2 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-blue transition hover:gap-2.5 hover:underline"
-                    >
-                      <Navigation className="size-4" />
-                      Cómo llegar desde tu ubicación
-                    </a>
-                  )}
                 </li>
               ))}
             </ul>
           </Reveal>
 
-          {/* Form */}
           <Reveal delay={0.1}>
             <form
               onSubmit={onSubmit}
-              className="rounded-2xl border border-border/60 bg-card p-6 shadow-2xl sm:p-8"
+              className="rounded-3xl bg-white p-6 text-foreground shadow-xl sm:p-8"
             >
               <div className="grid gap-4 sm:grid-cols-2">
                 <div className="grid gap-2">
@@ -142,7 +120,7 @@ export function ContactSection() {
                     name="name"
                     required
                     placeholder="Tu nombre"
-                    className="shadow-sm"
+                    className="rounded-xl"
                   />
                 </div>
                 <div className="grid gap-2">
@@ -152,7 +130,7 @@ export function ContactSection() {
                     name="email"
                     type="email"
                     placeholder="tu@correo.com"
-                    className="shadow-sm"
+                    className="rounded-xl"
                   />
                 </div>
               </div>
@@ -160,7 +138,7 @@ export function ContactSection() {
               <div className="mt-4 grid gap-2">
                 <Label htmlFor="service">Servicio de interés</Label>
                 <Select value={servicio} onValueChange={setServicio}>
-                  <SelectTrigger id="service" className="w-full shadow-sm">
+                  <SelectTrigger id="service" className="w-full rounded-xl">
                     <SelectValue placeholder="Selecciona un servicio" />
                   </SelectTrigger>
                   <SelectContent>
@@ -178,18 +156,18 @@ export function ContactSection() {
                 <Textarea
                   id="message"
                   name="message"
-                  rows={4}
+                  rows={5}
                   placeholder="¿En qué podemos ayudarte?"
-                  className="shadow-sm"
+                  className="rounded-xl"
                 />
               </div>
 
               <Button
                 type="submit"
-                className="mt-6 w-full bg-brand-navy text-white shadow-lg transition hover:bg-brand-navy/90"
+                className="mt-6 w-full rounded-full bg-brand-navy text-white hover:bg-brand-navy/90"
               >
                 <Send className="size-4" />
-                Enviar por WhatsApp
+                Enviar
               </Button>
               <p className="mt-3 text-center text-xs text-muted-foreground">
                 Se abrirá WhatsApp con tu mensaje listo para enviar.

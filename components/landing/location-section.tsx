@@ -2,29 +2,29 @@ import { Car, ExternalLink, MapPin, Navigation } from "lucide-react";
 
 import { directionsUrl, mapEmbedUrl, siteConfig } from "@/lib/site";
 import { Reveal } from "./motion-primitives";
-import { SectionPill } from "./section-pill";
 
 export function LocationSection() {
   const { contact } = siteConfig;
 
   return (
-    <section id="ubicacion" className="bg-background py-20 sm:py-24">
+    <section id="ubicacion" className="bg-background py-24 sm:py-28">
       <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
-        <Reveal className="flex flex-col items-center text-center">
-          <SectionPill>Cómo llegar</SectionPill>
-          <h2 className="mt-6 text-3xl font-extrabold tracking-tight text-brand-navy sm:text-4xl">
+        <Reveal className="text-center">
+          <p className="text-xs font-semibold uppercase tracking-[0.28em] text-brand-blue">
+            Cómo llegar
+          </p>
+          <h2 className="mt-4 text-3xl font-extrabold tracking-tight text-brand-navy sm:text-4xl">
             Visítanos en nuestras oficinas
           </h2>
-          <p className="mt-4 max-w-2xl text-muted-foreground">
+          <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
             Estamos en Chacao. Traza tu ruta desde donde estés.
           </p>
         </Reveal>
 
-        <div className="mt-12 grid gap-6 lg:grid-cols-[1fr_1.3fr] lg:items-stretch">
-          {/* Details */}
-          <Reveal className="flex flex-col rounded-2xl border border-border/60 bg-card p-7 shadow-xl">
+        <div className="mt-14 grid gap-5 lg:grid-cols-[1fr_1.3fr] lg:items-stretch">
+          <Reveal className="flex flex-col rounded-3xl border border-border/70 bg-card p-7 shadow-sm">
             <div className="flex items-start gap-3">
-              <span className="grid size-11 shrink-0 place-items-center rounded-lg bg-brand-navy text-white">
+              <span className="grid size-11 shrink-0 place-items-center rounded-2xl bg-brand-navy text-white">
                 <MapPin className="size-5" />
               </span>
               <div>
@@ -46,12 +46,12 @@ export function LocationSection() {
               </p>
             </div>
 
-            <div className="mt-auto flex flex-col gap-2 pt-6 sm:flex-row">
+            <div className="mt-auto flex flex-col gap-2 pt-8 sm:flex-row">
               <a
                 href={directionsUrl()}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex flex-1 items-center justify-center gap-2 rounded-lg bg-brand-navy px-4 py-2.5 text-sm font-semibold text-white shadow-md transition hover:bg-brand-navy/90"
+                className="inline-flex flex-1 items-center justify-center gap-2 rounded-full bg-brand-navy px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-brand-navy/90"
               >
                 <Navigation className="size-4" />
                 Cómo llegar
@@ -60,7 +60,7 @@ export function LocationSection() {
                 href={contact.mapsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex flex-1 items-center justify-center gap-2 rounded-lg border border-border bg-card px-4 py-2.5 text-sm font-semibold text-brand-navy shadow-sm transition hover:bg-brand-tint"
+                className="inline-flex flex-1 items-center justify-center gap-2 rounded-full border border-border bg-card px-4 py-2.5 text-sm font-semibold text-brand-navy transition hover:bg-brand-tint"
               >
                 <ExternalLink className="size-4" />
                 Abrir en Maps
@@ -68,8 +68,10 @@ export function LocationSection() {
             </div>
           </Reveal>
 
-          {/* Map */}
-          <Reveal delay={0.1} className="overflow-hidden rounded-2xl border border-border/60 shadow-xl">
+          <Reveal
+            delay={0.1}
+            className="overflow-hidden rounded-3xl border border-border/70 shadow-sm"
+          >
             <iframe
               title="Ubicación de LegalGor"
               src={mapEmbedUrl()}

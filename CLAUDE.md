@@ -47,19 +47,28 @@ ports-&-adapters yet).
 
 - `app/` — vinext App Router.
   - `app/page.tsx` — the **landing**, composed from `components/landing/*` sections.
-  - `app/paquetes/[slug]/page.tsx` — per-package detail page (slug = numeric Ref, e.g.
-    `/paquetes/310`); uses `generateStaticParams`. `params` is a **Promise** (Next 16 — await it).
+  - `app/paquetes/[slug]/page.tsx` — per-package detail page (slug = plan name, e.g.
+    `/paquetes/full`, `/paquetes/basico`); uses `generateStaticParams`. `params` is a **Promise** (Next 16 — await it).
   - `app/(dashboard)/` — route group for the internal panel. `layout.tsx` renders the sidebar
-    shell; pages: `/dashboard` (Hoy), `/vencimientos`, `/clientes`, `/tramites`, `/servicios`
-    (Catálogo), `/configuracion`.
+    shell; pages: `/dashboard` (Hoy), `/chats`, `/vencimientos`, `/clientes`, `/tramites`,
+    `/servicios` (Catálogo), `/configuracion` (Tabs: Landing + IA).
+    - `/chats` — multi-channel inbox (WhatsApp/IG/Messenger/Telegram/TikTok). Client page owns
+      conversation state; supports text/image/video/audio messages (attachments via
+      `URL.createObjectURL`, voice via `MediaRecorder`) + a "Planes y servicios" quick action
+      that emits a `cards` message. **No backend/ManyChat connection yet — demo state only.**
   - `app/globals.css` — Tailwind entry + the **navy/white brand theme** and **fiscal status
     tokens** as CSS variables (`--brand-*`, `--status-ok|warn|late`) mapped via `@theme inline`.
 - `features/` — feature-first domains, each `types.ts` + `data.ts`, single source of truth:
-  - `servicios/` — service lines + registration packages (+ `packageSlug`/`formatUsd`).
+  - `servicios/` — service lines + registration packages (+ `packagePrice`/`formatUsd`).
   - `clientes/` — sample clients with `regimen` (ordinario/especial).
   - `vencimientos/` — fiscal obligations + `fiscalStatus`/`venceLabel` anchored to a fixed
     `TODAY` constant (deterministic demo). `statusMeta` maps status → colour utilities.
   - `tramites/` — registration pipeline `etapas` + sample trámites.
+  - `chat/` — `channelMeta` (per-channel brand colour), sample `conversations`, and
+    `chatTools` (the function-calling registry the AI agent can invoke — add tools here).
+    `planesServiciosCards()` builds the catalog payload for the `enviar_planes_servicios` tool.
+  - `ai/config.ts` — AI agent config defaults (context PDF, system prompt, schedule,
+    auto-messages) edited from `/configuracion` → IA tab.
   - **Both the landing and the dashboard read from `features/` — never hardcode catalog/data.**
 - `components/landing/` — landing sections (hero, services, packages-carousel, tramites-tabs,
   about, contact, footer) + brand pieces (`section-pill`, `wave-divider`).

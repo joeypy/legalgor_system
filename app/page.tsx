@@ -4,6 +4,7 @@ import { Footer } from "@/components/landing/footer";
 import { Hero } from "@/components/landing/hero";
 import { LocationSection } from "@/components/landing/location-section";
 import { Navbar } from "@/components/landing/navbar";
+import { NumbersSection } from "@/components/landing/numbers-section";
 import { PackagesSection } from "@/components/landing/packages-section";
 import { PricingSection } from "@/components/landing/pricing-section";
 import { ServicesSection } from "@/components/landing/services-section";
@@ -15,6 +16,7 @@ export default function HomePage() {
       <main className="flex-1">
         <Hero />
         <ServicesSection />
+        <NumbersSection />
         <PackagesSection />
         <PricingSection />
         <AboutSection />

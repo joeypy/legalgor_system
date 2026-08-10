@@ -132,10 +132,11 @@ export const serviceLines: ServiceLine[] = [
 
 /**
  * Company-registration packages (segment "Ordinarias"), transcribed from
- * "LEGALGOR PAQUETES MAYO.pdf". Codes are reference numbers, not prices.
+ * "LEGALGOR PAQUETES MAYO.pdf". The numeric Ref is the package price in USD.
  */
 export const registrationPackages: RegistrationPackage[] = [
   {
+    slug: "promocional",
     ref: "Ref. 200",
     name: "Promocional",
     segment: "Ordinarias",
@@ -148,6 +149,7 @@ export const registrationPackages: RegistrationPackage[] = [
     note: "No incluye Impuestos del SAREN, Tasas ni Timbres Fiscales.",
   },
   {
+    slug: "basico",
     ref: "Ref. 250",
     name: "Básico",
     segment: "Ordinarias",
@@ -161,6 +163,7 @@ export const registrationPackages: RegistrationPackage[] = [
     note: "No incluye Impuestos del SAREN, Tasas ni Timbres Fiscales.",
   },
   {
+    slug: "full",
     ref: "Ref. 310",
     name: "Full",
     segment: "Ordinarias",
@@ -177,6 +180,7 @@ export const registrationPackages: RegistrationPackage[] = [
     highlighted: true,
   },
   {
+    slug: "premium-plus-manuales",
     ref: "Ref. 650",
     name: "Premium PLUS",
     segment: "Ordinarias",
@@ -192,6 +196,7 @@ export const registrationPackages: RegistrationPackage[] = [
     note: "No incluye Impuestos del SAREN, Tasas ni Timbres Fiscales.",
   },
   {
+    slug: "premium-plus-libre",
     ref: "Ref. 690",
     name: "Premium PLUS",
     segment: "Ordinarias",
@@ -207,6 +212,7 @@ export const registrationPackages: RegistrationPackage[] = [
     note: "No incluye Impuestos del SAREN, Tasas ni Timbres Fiscales.",
   },
   {
+    slug: "premium-plus-continua",
     ref: "Ref. 720",
     name: "Premium PLUS",
     segment: "Ordinarias",
@@ -230,8 +236,8 @@ export const formatUsd = (value: number) =>
     maximumFractionDigits: 0,
   }).format(value);
 
-/** URL slug for a package = its numeric Ref code (e.g. "Ref. 310" -> "310"). */
-export const packageSlug = (ref: string) => ref.replace(/\D/g, "");
+/** USD price encoded in the package Ref (e.g. "Ref. 310" → 310). */
+export const packagePrice = (ref: string) => Number(ref.replace(/\D/g, ""));
 
 export const registrationPackageBySlug = (slug: string) =>
-  registrationPackages.find((p) => packageSlug(p.ref) === slug);
+  registrationPackages.find((p) => p.slug === slug);

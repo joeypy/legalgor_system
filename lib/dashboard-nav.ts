@@ -7,6 +7,7 @@ export interface DashboardNavItem {
 
 export const dashboardNav: DashboardNavItem[] = [
   { label: "Hoy", href: "/dashboard", icon: "CalendarDays" },
+  { label: "Chats", href: "/chats", icon: "MessagesSquare" },
   { label: "Vencimientos", href: "/vencimientos", icon: "CalendarClock" },
   { label: "Clientes", href: "/clientes", icon: "Users" },
   { label: "Trámites", href: "/tramites", icon: "Workflow" },

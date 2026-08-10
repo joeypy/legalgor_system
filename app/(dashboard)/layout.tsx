@@ -6,9 +6,10 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="flex min-h-screen flex-1 bg-muted/40">
+    // Viewport-locked shell: sidebar + topbar stay put, only <main> scrolls.
+    <div className="flex h-dvh overflow-hidden bg-muted/40">
       <DashboardSidebar />
-      <div className="flex min-w-0 flex-1 flex-col">{children}</div>
+      <main className="min-w-0 flex-1 overflow-y-auto">{children}</main>
     </div>
   );
 }

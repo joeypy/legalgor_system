@@ -7,7 +7,8 @@ import { Footer } from "@/components/landing/footer";
 import { Navbar } from "@/components/landing/navbar";
 import { Button } from "@/components/ui/button";
 import {
-  packageSlug,
+  formatUsd,
+  packagePrice,
   registrationPackageBySlug,
   registrationPackages,
 } from "@/features/servicios/data";
@@ -15,7 +16,7 @@ import { etapas } from "@/features/tramites/data";
 import { whatsappUrl } from "@/lib/site";
 
 export function generateStaticParams() {
-  return registrationPackages.map((p) => ({ slug: packageSlug(p.ref) }));
+  return registrationPackages.map((p) => ({ slug: p.slug }));
 }
 
 export async function generateMetadata({
@@ -26,7 +27,7 @@ export async function generateMetadata({
   const { slug } = await params;
   const pkg = registrationPackageBySlug(slug);
   return {
-    title: pkg ? `Paquete ${pkg.name} (${pkg.ref})` : "Paquete",
+    title: pkg ? `Paquete ${pkg.name}` : "Paquete",
   };
 }
 
@@ -39,11 +40,12 @@ export default async function PaqueteDetailPage({
   const pkg = registrationPackageBySlug(slug);
   if (!pkg) notFound();
 
+  const price = packagePrice(pkg.ref);
+
   return (
     <>
       <Navbar />
       <main className="flex-1">
-        {/* Header */}
         <section className="bg-brand-navy-deep text-white">
           <div className="mx-auto w-full max-w-5xl px-4 py-14 sm:px-6 sm:py-20">
             <Link
@@ -53,7 +55,7 @@ export default async function PaqueteDetailPage({
               <ArrowLeft className="size-4" />
               Todos los paquetes
             </Link>
-            <div className="mt-6 flex flex-wrap items-center gap-4">
+            <div className="mt-6 flex flex-wrap items-center gap-3">
               <span className="text-xs font-semibold uppercase tracking-[0.18em] text-brand-sky">
                 {pkg.segment}
               </span>
@@ -65,16 +67,22 @@ export default async function PaqueteDetailPage({
               Paquete {pkg.name}
             </h1>
             <p className="mt-4 max-w-xl text-white/70">
-              Constitución de compañía para contribuyentes {pkg.segment.toLowerCase()},
-              con acompañamiento en cada gestión.
+              Constitución de compañía para contribuyentes{" "}
+              {pkg.segment.toLowerCase()}, con acompañamiento en cada gestión.
+            </p>
+            <p className="mt-8 font-mono text-5xl font-extrabold tracking-tight tabular-nums sm:text-6xl md:text-7xl">
+              {formatUsd(price)}
+            </p>
+            <p className="mt-2 text-sm text-white/55">
+              Precio del paquete · no incluye impuestos del SAREN, tasas ni
+              timbres fiscales
             </p>
           </div>
         </section>
 
-        {/* Body */}
         <section className="bg-background py-14 sm:py-16">
           <div className="mx-auto grid w-full max-w-5xl gap-8 px-4 sm:px-6 lg:grid-cols-[1.5fr_1fr]">
-            <div className="rounded-2xl border border-border/70 bg-card p-7 shadow-lg sm:p-8">
+            <div className="rounded-3xl border border-border/70 bg-card p-7 shadow-sm sm:p-8">
               <h2 className="text-lg font-bold text-brand-navy">Qué incluye</h2>
               <ul className="mt-5 grid gap-3 sm:grid-cols-2">
                 {pkg.features.map((f) => (
@@ -84,14 +92,17 @@ export default async function PaqueteDetailPage({
                   </li>
                 ))}
               </ul>
-              <p className="mt-7 rounded-lg bg-brand-tint px-4 py-3 text-xs leading-relaxed text-brand-navy">
+              <p className="mt-7 rounded-2xl bg-brand-tint px-4 py-3 text-xs leading-relaxed text-brand-navy">
                 {pkg.note}
               </p>
             </div>
 
             <aside className="space-y-6">
-              <div className="rounded-2xl border border-border/70 bg-card p-7 shadow-lg">
-                <h3 className="text-base font-bold text-brand-navy">
+              <div className="rounded-3xl border border-border/70 bg-card p-7 shadow-sm">
+                <p className="font-mono text-4xl font-extrabold tabular-nums text-brand-navy sm:text-5xl">
+                  {formatUsd(price)}
+                </p>
+                <h3 className="mt-4 text-base font-bold text-brand-navy">
                   ¿Te interesa?
                 </h3>
                 <p className="mt-2 text-sm text-muted-foreground">
@@ -100,7 +111,7 @@ export default async function PaqueteDetailPage({
                 </p>
                 <Button
                   asChild
-                  className="mt-5 w-full bg-brand-navy text-white shadow-md hover:bg-brand-navy/90"
+                  className="mt-5 w-full rounded-full bg-brand-navy text-white hover:bg-brand-navy/90"
                 >
                   <a
                     href={whatsappUrl(
@@ -116,7 +127,7 @@ export default async function PaqueteDetailPage({
                 </Button>
               </div>
 
-              <div className="rounded-2xl border border-border/70 bg-card p-7 shadow-sm">
+              <div className="rounded-3xl border border-border/70 bg-card p-7 shadow-sm">
                 <h3 className="text-base font-bold text-brand-navy">
                   Cómo es el proceso
                 </h3>

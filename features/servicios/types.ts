@@ -34,6 +34,8 @@ export interface ServiceLine {
 }
 
 export interface RegistrationPackage {
+  /** URL-friendly plan name (e.g. "basico", "premium-plus-libre"). */
+  slug: string;
   ref: string;
   name: string;
   /** Constituent-type segment from the flyers. */

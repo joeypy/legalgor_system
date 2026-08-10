@@ -6,6 +6,7 @@ import {
   BookText,
   CalendarClock,
   CalendarDays,
+  MessagesSquare,
   Settings,
   Users,
   Workflow,
@@ -23,6 +24,7 @@ const iconMap: Record<string, LucideIcon> = {
   Workflow,
   BookText,
   Settings,
+  MessagesSquare,
 };
 
 export function DashboardSidebar() {
@@ -36,7 +38,7 @@ export function DashboardSidebar() {
         </Link>
       </div>
 
-      <nav className="flex-1 space-y-0.5 p-4">
+      <nav className="min-h-0 flex-1 space-y-0.5 overflow-y-auto p-4">
         {dashboardNav.map((item) => {
           const Icon = iconMap[item.icon] ?? CalendarDays;
           const active =

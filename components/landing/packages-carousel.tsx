@@ -6,7 +6,6 @@ import { ArrowRight, Check, GripHorizontal } from "lucide-react";
 import { motion, useAnimationFrame, useMotionValue } from "motion/react";
 
 import {
-  packageSlug,
   registrationPackages,
 } from "@/features/servicios/data";
 import { cn } from "@/lib/utils";
@@ -18,12 +17,11 @@ const wrapValue = (v: number, min: number, max: number) => {
 };
 
 function PackageCard({ pkg }: { pkg: (typeof registrationPackages)[number] }) {
-  const slug = packageSlug(pkg.ref);
   return (
     <article
       className={cn(
-        "flex w-[280px] shrink-0 select-none flex-col rounded-2xl bg-white p-7 text-brand-navy shadow-2xl ring-1 ring-black/5",
-        pkg.highlighted && "ring-2 ring-brand-blue-bright",
+        "flex w-[280px] shrink-0 select-none flex-col rounded-3xl border border-border bg-white p-7 text-brand-navy shadow-sm",
+        pkg.highlighted && "border-brand-blue/40 bg-brand-tint/50 shadow-md",
       )}
     >
       <div className="flex items-center justify-between">
@@ -53,9 +51,9 @@ function PackageCard({ pkg }: { pkg: (typeof registrationPackages)[number] }) {
       </ul>
 
       <Link
-        href={`/paquetes/${slug}`}
+        href={`/paquetes/${pkg.slug}`}
         draggable={false}
-        className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-brand-navy px-4 py-2.5 text-sm font-semibold text-white shadow-md transition hover:bg-brand-navy/90"
+        className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-brand-navy px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-brand-navy/90"
       >
         Ver detalle
         <ArrowRight className="size-4" />
@@ -115,11 +113,10 @@ export function PackagesCarousel() {
         </div>
       </motion.div>
 
-      {/* edge fades into the navy section */}
-      <div className="pointer-events-none absolute inset-y-0 left-0 w-12 bg-gradient-to-r from-brand-navy-deep to-transparent sm:w-20" />
-      <div className="pointer-events-none absolute inset-y-0 right-0 w-12 bg-gradient-to-l from-brand-navy-deep to-transparent sm:w-20" />
+      <div className="pointer-events-none absolute inset-y-0 left-0 w-12 bg-gradient-to-r from-background to-transparent sm:w-20" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 w-12 bg-gradient-to-l from-background to-transparent sm:w-20" />
 
-      <p className="mt-5 flex items-center justify-center gap-2 text-xs text-white/50">
+      <p className="mt-5 flex items-center justify-center gap-2 text-xs text-muted-foreground">
         <GripHorizontal className="size-4" />
         Arrastra para explorar
       </p>
