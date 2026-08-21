@@ -20,13 +20,13 @@ function PackageCard({ pkg }: { pkg: (typeof registrationPackages)[number] }) {
   return (
     <article
       className={cn(
-        "flex w-[280px] shrink-0 select-none flex-col rounded-3xl border border-border bg-white p-7 text-brand-navy shadow-sm",
-        pkg.highlighted && "border-brand-wine/40 bg-brand-tint/60 shadow-md",
+        "flex w-[280px] shrink-0 select-none flex-col rounded-3xl border border-white/10 bg-white p-7 text-brand-navy shadow-sm",
+        pkg.highlighted && "ring-2 ring-white/40 shadow-md",
       )}
     >
       <div className="flex items-center justify-between">
         <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-brand-wine">
+          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-brand-navy/60">
             {pkg.segment}
           </p>
           <h3 className="mt-1 text-xl font-extrabold">{pkg.name}</h3>
@@ -39,12 +39,12 @@ function PackageCard({ pkg }: { pkg: (typeof registrationPackages)[number] }) {
       <ul className="mt-5 flex-1 space-y-2.5">
         {pkg.features.slice(0, 4).map((f) => (
           <li key={f} className="flex items-start gap-2 text-sm">
-            <Check className="mt-0.5 size-4 shrink-0 text-brand-wine" />
+            <Check className="mt-0.5 size-4 shrink-0 text-brand-navy" />
             <span className="text-foreground/80">{f}</span>
           </li>
         ))}
         {pkg.features.length > 4 && (
-          <li className="pl-6 text-sm font-medium text-brand-wine">
+          <li className="pl-6 text-sm font-medium text-brand-navy">
             + {pkg.features.length - 4} incluidos
           </li>
         )}
@@ -113,10 +113,10 @@ export function PackagesCarousel() {
         </div>
       </motion.div>
 
-      <div className="pointer-events-none absolute inset-y-0 left-0 w-12 bg-gradient-to-r from-background to-transparent sm:w-20" />
-      <div className="pointer-events-none absolute inset-y-0 right-0 w-12 bg-gradient-to-l from-background to-transparent sm:w-20" />
+      <div className="pointer-events-none absolute inset-y-0 left-0 w-12 bg-gradient-to-r from-brand-navy-deep to-transparent sm:w-20" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 w-12 bg-gradient-to-l from-brand-navy-deep to-transparent sm:w-20" />
 
-      <p className="mt-5 flex items-center justify-center gap-2 text-xs text-muted-foreground">
+      <p className="mt-5 flex items-center justify-center gap-2 text-xs text-white/50">
         <GripHorizontal className="size-4" />
         Arrastra para explorar
       </p>

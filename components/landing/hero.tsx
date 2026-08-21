@@ -93,7 +93,7 @@ export function Hero() {
                 onClick={() => setIndex(i)}
                 className={
                   i === index
-                    ? "h-2 w-8 rounded-full bg-brand-wine-soft transition-all"
+                    ? "h-2 w-8 rounded-full bg-white transition-all"
                     : "size-2 rounded-full bg-white/35 transition-all hover:bg-white/60"
                 }
               />
