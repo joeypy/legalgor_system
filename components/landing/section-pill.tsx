@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 
-/** Compact section eyebrow used across the landing. */
+/** Section eyebrow — vinotinto text accent. */
 export function SectionPill({
   children,
   className,
@@ -11,7 +11,7 @@ export function SectionPill({
   return (
     <span
       className={cn(
-        "inline-flex items-center text-xs font-semibold uppercase tracking-[0.2em] text-brand-blue",
+        "inline-flex items-center text-xs font-semibold uppercase tracking-[0.2em] text-brand-wine",
         className,
       )}
     >

@@ -59,12 +59,12 @@ export function NumbersSection() {
     <section
       ref={ref}
       id="numeros"
-      className="bg-brand-navy-deep py-24 text-white sm:py-28"
+      className="bg-brand-wine py-24 text-white sm:py-28"
       aria-labelledby="numbers-heading"
     >
       <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
         <Reveal className="text-center">
-          <p className="text-xs font-semibold uppercase tracking-[0.28em] text-brand-sky">
+          <p className="text-xs font-semibold uppercase tracking-[0.28em] text-white/70">
             Nuestros números
           </p>
           <h2

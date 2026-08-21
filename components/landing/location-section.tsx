@@ -2,6 +2,7 @@ import { Car, ExternalLink, MapPin, Navigation } from "lucide-react";
 
 import { directionsUrl, mapEmbedUrl, siteConfig } from "@/lib/site";
 import { Reveal } from "./motion-primitives";
+import { SectionPill } from "./section-pill";
 
 export function LocationSection() {
   const { contact } = siteConfig;
@@ -10,9 +11,7 @@ export function LocationSection() {
     <section id="ubicacion" className="bg-background py-24 sm:py-28">
       <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
         <Reveal className="text-center">
-          <p className="text-xs font-semibold uppercase tracking-[0.28em] text-brand-blue">
-            Cómo llegar
-          </p>
+          <SectionPill>Cómo llegar</SectionPill>
           <h2 className="mt-4 text-3xl font-extrabold tracking-tight text-brand-navy sm:text-4xl">
             Visítanos en nuestras oficinas
           </h2>
@@ -41,7 +40,7 @@ export function LocationSection() {
                 {contact.reference}
               </p>
               <p className="flex items-center gap-2">
-                <Car className="size-4 text-brand-blue" />
+                <Car className="size-4 text-brand-wine" />
                 {contact.parking}
               </p>
             </div>
@@ -60,7 +59,7 @@ export function LocationSection() {
                 href={contact.mapsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex flex-1 items-center justify-center gap-2 rounded-full border border-border bg-card px-4 py-2.5 text-sm font-semibold text-brand-navy transition hover:bg-brand-tint"
+                className="inline-flex flex-1 items-center justify-center gap-2 rounded-full border border-border bg-card px-4 py-2.5 text-sm font-semibold text-brand-wine transition hover:bg-brand-tint"
               >
                 <ExternalLink className="size-4" />
                 Abrir en Maps

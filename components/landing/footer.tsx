@@ -22,12 +22,12 @@ export function Footer() {
             {siteConfig.tagline}.
           </p>
           <p className="mt-4 flex items-start gap-2 text-sm text-white/65">
-            <MapPin className="mt-0.5 size-4 shrink-0 text-brand-sky" />
+            <MapPin className="mt-0.5 size-4 shrink-0 text-brand-wine-soft" />
             <a
               href={contact.mapsUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-white"
+              className="hover:text-brand-wine-soft"
             >
               {contact.address}
             </a>
@@ -43,7 +43,7 @@ export function Footer() {
               <li key={l.slug}>
                 <a
                   href="#servicios"
-                  className="text-white/75 transition-colors hover:text-white"
+                  className="text-white/75 transition-colors hover:text-brand-wine-soft"
                 >
                   {l.title}
                 </a>
@@ -62,9 +62,9 @@ export function Footer() {
                 href={whatsappUrl()}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-white/75 transition-colors hover:text-white"
+                className="inline-flex items-center gap-2 text-white/75 transition-colors hover:text-brand-wine-soft"
               >
-                <WhatsappIcon className="size-4 text-brand-sky" />
+                <WhatsappIcon className="size-4 text-brand-wine-soft" />
                 {contact.whatsapp}
               </a>
             </li>
@@ -73,22 +73,22 @@ export function Footer() {
                 href={contact.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-white/75 transition-colors hover:text-white"
+                className="inline-flex items-center gap-2 text-white/75 transition-colors hover:text-brand-wine-soft"
               >
-                <InstagramIcon className="size-4 text-brand-sky" />
+                <InstagramIcon className="size-4 text-brand-wine-soft" />
                 {instagramHandle()}
               </a>
             </li>
             <li>
               <a
                 href={`mailto:${contact.email}`}
-                className="text-white/75 transition-colors hover:text-white"
+                className="text-white/75 transition-colors hover:text-brand-wine-soft"
               >
                 {contact.email}
               </a>
             </li>
             <li>
-              <Link href="/dashboard" className="text-white/75 hover:text-white">
+              <Link href="/dashboard" className="text-white/75 hover:text-brand-wine-soft">
                 Panel interno
               </Link>
             </li>

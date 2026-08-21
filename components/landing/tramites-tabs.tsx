@@ -39,7 +39,7 @@ export function TramitesTabs() {
                 className={cn(
                   "size-4 shrink-0 transition",
                   activeTab
-                    ? "text-brand-blue"
+                    ? "text-brand-wine"
                     : "text-white/40 group-hover:text-white/70",
                 )}
               />
@@ -74,7 +74,7 @@ export function TramitesTabs() {
                 >
                   <span className="text-sm text-foreground/85">{item.label}</span>
                   {item.price != null && (
-                    <span className="shrink-0 rounded-full bg-brand-tint px-3 py-1 font-mono text-sm font-bold tabular-nums text-brand-navy">
+                    <span className="shrink-0 rounded-full bg-brand-wine/10 px-3 py-1 font-mono text-sm font-bold tabular-nums text-brand-wine">
                       {formatUsd(item.price)}
                     </span>
                   )}

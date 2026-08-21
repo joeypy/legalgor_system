@@ -9,6 +9,7 @@ import {
 
 import { serviceLines } from "@/features/servicios/data";
 import { Reveal, Stagger, StaggerItem } from "./motion-primitives";
+import { SectionPill } from "./section-pill";
 
 const iconMap: Record<string, LucideIcon> = {
   Calculator,
@@ -33,9 +34,7 @@ export function ServicesSection() {
     <section id="servicios" className="bg-background py-24 sm:py-28">
       <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
         <Reveal className="text-center">
-          <p className="text-xs font-semibold uppercase tracking-[0.28em] text-brand-blue">
-            Servicios
-          </p>
+          <SectionPill>Servicios</SectionPill>
           <h2 className="mt-4 text-3xl font-extrabold tracking-tight text-brand-navy sm:text-4xl">
             Lo que hacemos por tu empresa
           </h2>
@@ -52,8 +51,8 @@ export function ServicesSection() {
 
             return (
               <StaggerItem key={line.slug} className="h-full">
-                <article className="group flex h-full flex-col rounded-2xl border border-border/70 bg-card p-7 shadow-sm transition hover:-translate-y-0.5 hover:border-brand-blue/25 hover:shadow-md sm:p-8">
-                  <span className="grid size-14 place-items-center rounded-2xl bg-brand-navy text-white transition-colors group-hover:bg-brand-blue">
+                <article className="group flex h-full flex-col rounded-2xl border border-border/70 bg-card p-7 shadow-sm transition hover:-translate-y-0.5 hover:border-brand-wine/30 hover:shadow-md sm:p-8">
+                  <span className="grid size-14 place-items-center rounded-2xl bg-brand-navy text-white transition-colors group-hover:bg-brand-navy/90">
                     <Icon className="size-7" />
                   </span>
                   <h3 className="mt-7 text-lg font-extrabold leading-snug tracking-tight text-brand-navy">
@@ -64,7 +63,7 @@ export function ServicesSection() {
                   </p>
                   <a
                     href="#precios"
-                    className="mt-8 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-blue transition hover:gap-2.5"
+                    className="mt-8 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-wine transition hover:gap-2.5 hover:text-brand-wine-bright"
                   >
                     Ver más
                     <ArrowRight className="size-4" />

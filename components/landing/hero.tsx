@@ -36,7 +36,7 @@ export function Hero() {
     <section className="relative flex min-h-[calc(100svh-4.25rem)] flex-col justify-center overflow-hidden bg-brand-navy-deep text-white">
       <div
         aria-hidden
-        className="absolute inset-0 bg-[radial-gradient(70%_60%_at_50%_0%,oklch(0.42_0.14_264/0.55)_0%,transparent_70%)]"
+        className="absolute inset-0 bg-[radial-gradient(70%_60%_at_50%_0%,oklch(0.35_0.07_260/0.5)_0%,transparent_70%)]"
       />
       <div
         aria-hidden
@@ -44,11 +44,10 @@ export function Hero() {
       />
       <div
         aria-hidden
-        className="absolute -left-16 bottom-10 size-[20rem] -rotate-6 rounded-[2rem] border border-white/10 bg-brand-blue/20"
+        className="absolute -left-16 bottom-10 size-[20rem] -rotate-6 rounded-[2rem] border border-white/10 bg-brand-wine/15"
       />
 
       <div className="relative mx-auto flex w-full max-w-5xl flex-col items-center px-4 py-20 text-center sm:px-6 sm:py-24">
-        {/* Static brand block */}
         <Logo variant="light" className="scale-110" />
         <p className="mt-5 text-sm font-medium text-white/60">
           {siteConfig.tagline}
@@ -57,7 +56,6 @@ export function Hero() {
           {siteConfig.description}
         </p>
 
-        {/* Rotating headline */}
         <div className="relative mt-10 min-h-[5.5rem] w-full sm:min-h-[7rem]">
           <AnimatePresence mode="wait">
             <motion.h1
@@ -95,7 +93,7 @@ export function Hero() {
                 onClick={() => setIndex(i)}
                 className={
                   i === index
-                    ? "h-2 w-8 rounded-full bg-white transition-all"
+                    ? "h-2 w-8 rounded-full bg-brand-wine-soft transition-all"
                     : "size-2 rounded-full bg-white/35 transition-all hover:bg-white/60"
                 }
               />
@@ -103,7 +101,6 @@ export function Hero() {
           </div>
         </div>
 
-        {/* Static achievements */}
         <dl className="mt-14 grid w-full max-w-xl grid-cols-3 gap-6 border-t border-white/15 pt-10">
           {stats.map((stat) => (
             <div key={stat.label}>

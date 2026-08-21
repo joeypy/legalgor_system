@@ -2,15 +2,14 @@ import { Compass, Target } from "lucide-react";
 
 import { siteConfig } from "@/lib/site";
 import { Reveal, Stagger, StaggerItem } from "./motion-primitives";
+import { SectionPill } from "./section-pill";
 
 export function AboutSection() {
   return (
     <section id="nosotros" className="bg-background py-24 sm:py-28">
       <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
         <Reveal className="text-center">
-          <p className="text-xs font-semibold uppercase tracking-[0.28em] text-brand-blue">
-            Nosotros
-          </p>
+          <SectionPill>Nosotros</SectionPill>
           <h2 className="mt-4 text-3xl font-extrabold tracking-tight text-brand-navy sm:text-4xl">
             Comprometidos con tu crecimiento
           </h2>
@@ -32,7 +31,7 @@ export function AboutSection() {
           </StaggerItem>
           <StaggerItem>
             <article className="h-full rounded-3xl border border-border/70 bg-card p-8 shadow-sm md:p-10">
-              <span className="grid size-12 place-items-center rounded-2xl bg-brand-blue text-white">
+              <span className="grid size-12 place-items-center rounded-2xl bg-brand-navy text-white">
                 <Compass className="size-5" />
               </span>
               <h3 className="mt-6 text-2xl font-extrabold tracking-tight text-brand-navy">

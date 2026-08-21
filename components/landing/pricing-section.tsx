@@ -1,4 +1,5 @@
 import { Reveal } from "./motion-primitives";
+import { SectionPill } from "./section-pill";
 import { TramitesTabs } from "./tramites-tabs";
 
 export function PricingSection() {
@@ -6,9 +7,7 @@ export function PricingSection() {
     <section id="precios" className="bg-brand-tint py-24 sm:py-28">
       <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
         <Reveal className="text-center">
-          <p className="text-xs font-semibold uppercase tracking-[0.28em] text-brand-blue">
-            Trámites individuales
-          </p>
+          <SectionPill>Trámites individuales</SectionPill>
           <h2 className="mt-4 text-3xl font-extrabold tracking-tight text-brand-navy sm:text-4xl">
             Precios claros para trámites puntuales
           </h2>

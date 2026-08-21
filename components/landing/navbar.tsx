@@ -30,7 +30,7 @@ export function Navbar() {
             <a
               key={item.href}
               href={item.href}
-              className="text-sm font-medium text-brand-navy/70 transition-colors hover:text-brand-navy"
+              className="text-sm font-medium text-brand-navy/70 transition-colors hover:text-brand-wine"
             >
               {item.label}
             </a>
@@ -76,7 +76,7 @@ export function Navbar() {
                   key={item.href}
                   href={item.href}
                   onClick={() => setOpen(false)}
-                  className="rounded-lg px-3 py-2.5 text-base font-semibold text-brand-navy/80 transition-colors hover:bg-brand-tint hover:text-brand-navy"
+                  className="rounded-lg px-3 py-2.5 text-base font-semibold text-brand-navy/80 transition-colors hover:bg-brand-tint hover:text-brand-wine"
                 >
                   {item.label}
                 </a>
@@ -84,7 +84,7 @@ export function Navbar() {
               <a
                 href="#ubicacion"
                 onClick={() => setOpen(false)}
-                className="rounded-lg px-3 py-2.5 text-base font-semibold text-brand-navy/80 transition-colors hover:bg-brand-tint hover:text-brand-navy"
+                className="rounded-lg px-3 py-2.5 text-base font-semibold text-brand-navy/80 transition-colors hover:bg-brand-tint hover:text-brand-wine"
               >
                 Cómo llegar
               </a>

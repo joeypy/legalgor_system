@@ -1,14 +1,13 @@
 import { Reveal } from "./motion-primitives";
 import { PackagesCarousel } from "./packages-carousel";
+import { SectionPill } from "./section-pill";
 
 export function PackagesSection() {
   return (
     <section id="paquetes" className="relative bg-background py-24 sm:py-28">
       <div className="mx-auto flex w-full max-w-6xl flex-col items-center px-4 text-center sm:px-6">
         <Reveal>
-          <p className="text-xs font-semibold uppercase tracking-[0.28em] text-brand-blue">
-            Paquetes de registro
-          </p>
+          <SectionPill>Paquetes de registro</SectionPill>
           <h2 className="mt-4 text-3xl font-extrabold tracking-tight text-brand-navy sm:text-4xl">
             Constituye tu compañía sin complicaciones
           </h2>

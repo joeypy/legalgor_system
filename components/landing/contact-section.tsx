@@ -67,17 +67,17 @@ export function ContactSection() {
   };
 
   return (
-    <section id="contacto" className="bg-brand-navy-deep py-24 text-white sm:py-28">
+    <section id="contacto" className="bg-brand-wine py-24 text-white sm:py-28">
       <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
         <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:items-start lg:gap-16">
           <Reveal>
-            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-brand-sky">
+            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-white/70">
               Contacto
             </p>
             <h2 className="mt-4 text-3xl font-extrabold tracking-tight sm:text-4xl">
               Formulario de contacto
             </h2>
-            <p className="mt-4 max-w-md text-white/70">
+            <p className="mt-4 max-w-md text-white/75">
               Completa el formulario o escríbenos por el canal que prefieras.
             </p>
 
@@ -88,13 +88,13 @@ export function ContactSection() {
                     href={c.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group flex items-center gap-3 rounded-2xl p-2 -ml-2 transition hover:bg-white/5"
+                    className="group flex items-center gap-3 rounded-2xl p-2 -ml-2 transition hover:bg-white/10"
                   >
-                    <span className="grid size-11 place-items-center rounded-full bg-white/10 text-white transition group-hover:bg-white group-hover:text-brand-navy">
+                    <span className="grid size-11 place-items-center rounded-full bg-white/15 text-white transition group-hover:bg-white group-hover:text-brand-wine">
                       <c.icon className="size-4" />
                     </span>
                     <span className="min-w-0">
-                      <span className="block text-xs font-medium uppercase tracking-wide text-white/50">
+                      <span className="block text-xs font-medium uppercase tracking-wide text-white/55">
                         {c.label}
                       </span>
                       <span className="block truncate text-sm font-medium text-white/90 group-hover:text-white">
@@ -164,7 +164,7 @@ export function ContactSection() {
 
               <Button
                 type="submit"
-                className="mt-6 w-full rounded-full bg-brand-navy text-white hover:bg-brand-navy/90"
+                className="mt-6 w-full rounded-full bg-brand-wine text-white hover:bg-brand-wine-bright"
               >
                 <Send className="size-4" />
                 Enviar

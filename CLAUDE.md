@@ -56,7 +56,7 @@ ports-&-adapters yet).
       conversation state; supports text/image/video/audio messages (attachments via
       `URL.createObjectURL`, voice via `MediaRecorder`) + a "Planes y servicios" quick action
       that emits a `cards` message. **No backend/ManyChat connection yet — demo state only.**
-  - `app/globals.css` — Tailwind entry + the **navy/white brand theme** and **fiscal status
+  - `app/globals.css` — Tailwind entry + the **navy / wine / cream brand theme** and **fiscal status
     tokens** as CSS variables (`--brand-*`, `--status-ok|warn|late`) mapped via `@theme inline`.
 - `features/` — feature-first domains, each `types.ts` + `data.ts`, single source of truth:
   - `servicios/` — service lines + registration packages (+ `packagePrice`/`formatUsd`).
@@ -86,9 +86,11 @@ ports-&-adapters yet).
 
 ### Brand & content conventions
 
-- Colors are **navy + white**. Use the brand Tailwind utilities (`bg-brand-navy`,
-  `text-brand-navy`, `bg-brand-navy-deep`, `text-brand-blue`, `bg-brand-tint`, …) rather
-  than hardcoded hex. The dashboard sidebar uses the shadcn `sidebar-*` tokens (deep navy).
+- Colors are **navy + vinotinto + cream** (from the Instagram brand). Use the brand Tailwind
+  utilities (`bg-brand-navy`, `text-brand-navy`, `bg-brand-navy-deep`, `bg-brand-wine`,
+  `text-brand-wine`, `bg-brand-cream` / `bg-brand-tint`, …) rather than hardcoded hex.
+  `brand-blue*` is an alias of the wine accent for backwards compatibility. The dashboard
+  sidebar uses the shadcn `sidebar-*` tokens (deep navy).
 - **UI copy is Spanish (neutral/professional).** Code, identifiers, and types are English.
 - Source brand material (logos, pricing flyers, the packages PDF) lives in `assets/` — it is
   reference, not served. The catalog text in `features/servicios/data.ts` was transcribed
