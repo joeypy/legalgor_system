@@ -16,8 +16,14 @@
   ],
   "routes": [
     { "pattern": "grupolegalgor.com", "custom_domain": true },
-    { "pattern": "www.grupolegalgor.com", "custom_domain": true }
+    { "pattern": "www.grupolegalgor.com", "custom_domain": true },
+    { "pattern": "admin.grupolegalgor.com", "custom_domain": true },
+    { "pattern": "plataforma.grupolegalgor.com", "custom_domain": true }
   ],
+  "vars": {
+    "BETTER_AUTH_URL": "https://admin.grupolegalgor.com",
+    "BETTER_AUTH_TRUSTED_ORIGINS": "https://admin.grupolegalgor.com,https://plataforma.grupolegalgor.com,https://*.grupolegalgor.com"
+  },
   "observability": {
     "enabled": true
   }

@@ -48,7 +48,7 @@ export function Hero() {
       />
 
       <div className="relative mx-auto flex w-full max-w-5xl flex-col items-center px-4 py-20 text-center sm:px-6 sm:py-24">
-        <Logo variant="light" className="scale-110" />
+        <Logo variant="light" className="scale-125" />
         <p className="mt-5 text-sm font-medium text-white/60">
           {siteConfig.tagline}
         </p>

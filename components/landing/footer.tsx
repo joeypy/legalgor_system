@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { MapPin } from "lucide-react";
 
 import { InstagramIcon, WhatsappIcon } from "@/components/brand/icons";
@@ -86,11 +85,6 @@ export function Footer() {
               >
                 {contact.email}
               </a>
-            </li>
-            <li>
-              <Link href="/dashboard" className="text-white/75 hover:text-brand-wine-soft">
-                Panel interno
-              </Link>
             </li>
           </ul>
         </div>

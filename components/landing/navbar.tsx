@@ -40,13 +40,6 @@ export function Navbar() {
         <div className="hidden items-center gap-3 lg:flex">
           <Button
             asChild
-            variant="ghost"
-            className="text-brand-navy hover:bg-brand-tint hover:text-brand-navy"
-          >
-            <Link href="/dashboard">Panel</Link>
-          </Button>
-          <Button
-            asChild
             className="rounded-full bg-brand-navy text-white hover:bg-brand-navy/90"
           >
             <a href="#contacto">Contáctenos</a>
@@ -90,14 +83,6 @@ export function Navbar() {
               </a>
             </nav>
             <div className="mt-4 flex flex-col gap-2 px-4">
-              <Button
-                asChild
-                variant="ghost"
-                className="justify-start text-brand-navy hover:bg-brand-tint"
-                onClick={() => setOpen(false)}
-              >
-                <Link href="/dashboard">Panel</Link>
-              </Button>
               <Button
                 asChild
                 className="rounded-full bg-brand-navy text-white hover:bg-brand-navy/90"
