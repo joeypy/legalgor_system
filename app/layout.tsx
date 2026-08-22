@@ -13,6 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://grupolegalgor.com"),
   title: {
     default: "LegalGor — Asesoría Contable, Tributaria y Legal",
     template: "%s · LegalGor",

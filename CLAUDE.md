@@ -6,46 +6,43 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 LegalGor is a Venezuelan accounting, tax, and legal services firm. This repo is its
 web system: a public **landing** (marketing + service catalog) and an authenticated-style
-**dashboard** (internal management shell). The app is built on **vinext** — Cloudflare's
-Vite-based reimplementation of the Next.js App Router API surface — and deploys to
-**Cloudflare Workers**.
+**dashboard** (internal management shell). Built with **Next.js 16** (App Router) and
+deployed to **Cloudflare Workers** via **OpenNext** (`@opennextjs/cloudflare`).
 
 ## Commands
 
 ```bash
-pnpm run dev:vinext     # vinext dev server on http://localhost:3001 (primary dev command)
-pnpm run build:vinext   # production build for Cloudflare Workers (outputs to dist/)
-pnpm run start:vinext   # serve the production build locally
-pnpm run deploy         # vinext deploy -> Cloudflare Workers (uses wrangler.jsonc)
-pnpm run typecheck      # tsc --noEmit
-pnpm run lint           # eslint (flat config, eslint-config-next)
+bun install
+bun run dev          # Next.js dev server (http://localhost:3000)
+bun run build        # next build
+bun run preview      # OpenNext build + local workerd preview
+bun run deploy       # OpenNext build + deploy to Cloudflare Workers
+bun run typecheck    # tsc --noEmit
+bun run lint         # eslint (flat config, eslint-config-next)
+bun run cf-typegen   # wrangler types → cloudflare-env.d.ts
 ```
 
-- The plain `next` scripts (`dev`/`build`/`start`) are kept by vinext as a fallback but the
-  project targets the **`:vinext`** scripts. Develop and verify with those.
+- **Package manager: Bun only** (no pnpm, npm, or yarn).
 - There is no test runner configured yet.
-- shadcn components: `npx shadcn@latest add <component>` (config in `components.json`,
+- shadcn components: `bunx shadcn@latest add <component>` (config in `components.json`,
   library = **radix**, preset = nova, Tailwind v4).
 
 ## Stack
 
-- **vinext** `^0.0.55` on **Vite 8** (App Router conventions: the `app/` directory at the repo root).
-- **React 19** + **TypeScript**, **RSC** enabled (`rsc: true`).
-- **Tailwind v4** (CSS-first, no `tailwind.config`) via the **`@tailwindcss/vite`** plugin
-  (not PostCSS — PostCSS's `@import "tailwindcss"` resolution breaks in the Workers build).
+- **Next.js 16.3** + **React 19** + **TypeScript 7**, RSC enabled (`rsc: true`).
+- **OpenNext** `@opennextjs/cloudflare` + **Wrangler** → Cloudflare Workers.
+- **Tailwind v4** (CSS-first, no `tailwind.config`) via **`@tailwindcss/postcss`**.
 - **shadcn/ui** primitives in `components/ui/`, icons from **lucide-react**.
 - Import alias **`@/*` → repo root** (e.g. `@/components`, `@/features`, `@/lib`).
-
-> vinext is experimental (~94% of the Next.js 16 API surface). Stay on well-trodden App
-> Router features; avoid bleeding-edge Next APIs. lucide-react is excluded from Vite dep
-> pre-bundling in `vite.config.ts` to keep the RSC/client optimizer consistent.
+- Production domain: **`https://grupolegalgor.com`** (Worker name `legalgor`;
+  `www` redirects to apex via `middleware.ts`).
 
 ## Architecture
 
 Pragmatic, **feature-first** (intended to evolve toward hexagonal as domains harden — not
 ports-&-adapters yet).
 
-- `app/` — vinext App Router.
+- `app/` — Next.js App Router.
   - `app/page.tsx` — the **landing**, composed from `components/landing/*` sections.
   - `app/paquetes/[slug]/page.tsx` — per-package detail page (slug = plan name, e.g.
     `/paquetes/full`, `/paquetes/basico`); uses `generateStaticParams`. `params` is a **Promise** (Next 16 — await it).
@@ -83,6 +80,9 @@ ports-&-adapters yet).
   `whatsappUrl()` and `instagramHandle()` helpers. Editable from `/configuracion`
   (persistence pending a Cloudflare KV/D1 binding).
 - `lib/dashboard-nav.ts` — dashboard sidebar nav (label/href/icon name).
+- `middleware.ts` — redirects `www.grupolegalgor.com` → apex (308). Keep as `middleware.ts`
+  (OpenNext does not support `proxy.ts` yet).
+- `wrangler.jsonc` / `open-next.config.ts` — Cloudflare Worker + OpenNext adapter config.
 
 ### Brand & content conventions
 
@@ -101,14 +101,11 @@ ports-&-adapters yet).
 
 ## Deploy
 
-`pnpm run deploy` runs `vinext deploy`, which generates the Cloudflare Workers wiring
-(the `cloudflare()` Vite plugin config + `wrangler.jsonc`) on first run and publishes the
-worker. Cloudflare auth (`wrangler login` / `CLOUDFLARE_API_TOKEN`) is required.
+`bun run deploy` runs `opennextjs-cloudflare build && opennextjs-cloudflare deploy`.
+Requires Cloudflare auth (`wrangler login` / `CLOUDFLARE_API_TOKEN`).
 
-> Do **not** hand-add `wrangler.jsonc` + the `cloudflare()` plugin to `vite.config.ts`
-> yourself: that flips `vinext build` into Workers mode but breaks `vinext dev` (every route
-> 404s). Let `vinext deploy` own that wiring. `@cloudflare/vite-plugin` and `wrangler` are
-> already installed for it.
+Config lives in `wrangler.jsonc` (Worker `legalgor`, custom domains `grupolegalgor.com` +
+`www.grupolegalgor.com`, `nodejs_compat`). Do not use vinext or hand-wire `@cloudflare/vite-plugin`.
 
 ## Status / next steps
 
@@ -116,7 +113,7 @@ Landing and dashboard are built with **sample/demo data** (`features/*/data.ts`)
 backend yet. The dashboard reads obligations/clients/trámites from those seed files anchored to a
 fixed `TODAY`. Real next steps:
 
-- **Persistence:** wire Cloudflare KV/D1 (vinext → Workers). First user is `/configuracion`
+- **Persistence:** wire Cloudflare KV/D1 (Workers bindings). First user is `/configuracion`
   (contact/location currently edits in-memory only) and the demo data in `features/`.
 - **CRUD:** clientes (RIF, régimen), trámite stage transitions, obligation generation per régimen
   (IVA quincenal vs mensual), billing.

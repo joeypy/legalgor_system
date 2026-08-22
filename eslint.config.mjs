@@ -12,9 +12,9 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
-    // vinext / cloudflare build artifacts
+    // OpenNext / Cloudflare build artifacts
     "dist/**",
-    ".vinext/**",
+    ".open-next/**",
     ".wrangler/**",
   ]),
 ]);

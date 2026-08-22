@@ -3,26 +3,34 @@
 Sistema web de **LegalGor** — asesoría contable, tributaria y legal en Venezuela.
 Incluye un **landing** público (catálogo de servicios y paquetes) y un **panel** interno.
 
-Construido con **vinext** (la reimplementación de la API de Next.js sobre Vite, de
-Cloudflare), React 19, Tailwind v4 y shadcn/ui. Despliega a **Cloudflare Workers**.
+Construido con **Next.js 16** (App Router), React 19, Tailwind v4 y shadcn/ui.
+Despliega a **Cloudflare Workers** con **OpenNext** (`@opennextjs/cloudflare`).
+Gestor de paquetes: **Bun**.
 
 ## Desarrollo
 
 ```bash
-pnpm install
-pnpm run dev:vinext     # http://localhost:3001
+bun install
+bun run dev     # http://localhost:3000
 ```
 
 ## Scripts
 
 | Script | Descripción |
 | --- | --- |
-| `pnpm run dev:vinext` | Servidor de desarrollo (vinext) |
-| `pnpm run build:vinext` | Build de producción para Cloudflare Workers (`dist/`) |
-| `pnpm run start:vinext` | Sirve el build localmente |
-| `pnpm run deploy` | `vinext deploy` a Cloudflare Workers (`wrangler.jsonc`) |
-| `pnpm run typecheck` | `tsc --noEmit` |
-| `pnpm run lint` | ESLint |
+| `bun run dev` | Servidor de desarrollo (Next.js) |
+| `bun run build` | Build de producción Next.js |
+| `bun run preview` | Build OpenNext + preview local en workerd |
+| `bun run deploy` | Build OpenNext + deploy a Cloudflare Workers |
+| `bun run typecheck` | `tsc --noEmit` |
+| `bun run lint` | ESLint |
+| `bun run cf-typegen` | Tipos de bindings Cloudflare |
+
+## Dominio
+
+- Producción: `https://grupolegalgor.com`
+- `www.grupolegalgor.com` redirige al apex (308)
+- Worker: `legalgor` (también `*.workers.dev`)
 
 ## Estructura
 
